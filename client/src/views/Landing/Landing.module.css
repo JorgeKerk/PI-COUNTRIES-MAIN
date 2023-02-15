@@ -1,0 +1,25 @@
+.mainContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.button {
+    font-weight: bold;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: 0.3s ease-in;
+}
+
+.button:hover {
+    transform: scale(1.2);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: rgb(107, 201, 0);
+    text-shadow: 1px 1px 1px black;
+}

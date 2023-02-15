@@ -1,0 +1,29 @@
+.mainContainer {
+    background-color: rgba(224, 255, 255, 0.5);
+    width: 97.5%;
+    border: 1px solid black;
+    border-radius: 1rem;
+    margin-top: 0.15rem;
+    padding: 1rem;
+    display: flex;
+}
+
+.pagePAgination {
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1rem;
+    margin: 0 0.35rem;
+    padding: 0.3rem;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    background-color: rgba(128, 128, 128, 0.5);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.pagePAgination:hover{
+    text-shadow: 1px 1px 1px black;
+    transform: scale(1.2);
+    background-color: rgba(255, 255, 255, 0.5);
+}

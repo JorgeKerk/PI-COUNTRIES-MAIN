@@ -1,0 +1,10 @@
+.mainContainer{
+    width: 97.5%;
+    border: 1px solid black;
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: repeat( 5, 1fr);
+    padding: 1rem;
+    gap: 1rem;
+    background-color: rgba(224, 255, 255, 0.5);
+}
