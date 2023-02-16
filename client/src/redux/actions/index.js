@@ -10,11 +10,16 @@ import {
     getAllActivities 
 } from './activities'
 
+import {
+    setCurrentPage
+} from './config'
+
 export { 
     getAllCountries, 
     getCountryById, 
     getCountryByName,
     setCurrentCountries,
     createActivity,
-    getAllActivities
+    getAllActivities,
+    setCurrentPage
 }

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 // import { setCurrentCountries } from '../../redux/actions'
 
 const CardsContainerCountries = ()=> {
-    const { currentCountries } = useSelector( state => state )
+    const { countries, currentCountries } = useSelector( state => state )
     // const dispatch = useDispatch()
 
     // useEffect( ()=> {
@@ -13,20 +13,20 @@ const CardsContainerCountries = ()=> {
     //         console.log(countries);
     //         dispatch( setCurrentCountries( countries.slice( 0, 10 ) ) )
     //     }
-    // }, [ countries, dispatch ] )
-
+    // // }, [ countries, dispatch ] )
+    // data.filter((item,index)=>{
+    //     return data.indexOf(item) === index;
+    //   }) 
+    countries && console.log( new Set(countries.map( c => c.continent)))
     return(
         <div className= { styles.mainContainer } >
-            { currentCountries.length && currentCountries.map( ( { id, name, flag, continent, capital, subregion, area, population } )=> (
+            { currentCountries.length && currentCountries.map( ( { id, name, flag, continent, population } )=> (
                 <CardCountry 
                     key= { id} 
                     id= { id }
                     name= { name }
                     flag= { flag }
                     continent= { continent }
-                    capital= { capital }
-                    subregion= { subregion }
-                    area= { area }
                     population= { population }
                 />
             ))}

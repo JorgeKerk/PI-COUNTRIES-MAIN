@@ -1,0 +1,5 @@
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
+
+export {
+    SET_CURRENT_PAGE
+}

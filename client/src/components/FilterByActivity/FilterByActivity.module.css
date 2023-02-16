@@ -1,0 +1,12 @@
+.container {
+    height: 31vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 0.5rem;
+}
+
+/* .container input{
+    margin: 0;
+} */

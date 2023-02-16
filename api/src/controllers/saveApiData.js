@@ -8,7 +8,7 @@ const getApiData = async ()=> {
         const allCountries = data.map( country => (
              {
                 id: country.cca3,
-                name: country.translations.spa.official,
+                name: country.name.common,
                 flag: country.flags[0],
                 continent: country.continents.join(),
                 capital: country.capital? country.capital.join().toString() : 'Not defined',

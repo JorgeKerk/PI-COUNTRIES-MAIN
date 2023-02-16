@@ -1,16 +1,24 @@
-import styles from './CardCountry.module.css';
+import styles from './CardCountry.module.css'
+import { Link } from 'react-router-dom'
 
-const CardCountry = ( { id, name, flag, continent, capital, subregion, area, population } )=> {
+const CardCountry = ( { id, name, flag, continent, population } )=> {
     return(
-        <div className= { styles.mainContainer } >
-            <img src={ flag } alt={`Flag to ${ name }`} className= { styles.imgFlag } />
-            <p>{ name }</p>
-            <p>{ continent }</p>
-            <p>{ capital }</p>
-            <p>{ subregion }</p>
-            <p>{ area }</p>
-            <p>{ population }</p>
-        </div>
+        <Link to={ `/detail/${ id }` } className={ styles.link } >
+            <div className= { styles.mainContainer } >
+                <img src={ flag } alt={`Flag to ${ name }`} className= { styles.imgFlag } />
+                <h2>{ name }</h2>
+                <div className= { styles.subContainer }> 
+                    <div>
+                        <p><strong>Continent:</strong></p>
+                        <p> { continent }</p>
+                    </div>   
+                    <div>
+                        <p><strong>population:</strong></p>
+                        <p> { population }</p>
+                    </div>
+                </div>
+            </div>
+        </Link>
     )
 }
 

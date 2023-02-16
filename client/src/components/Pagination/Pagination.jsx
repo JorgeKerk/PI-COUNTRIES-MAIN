@@ -1,36 +1,40 @@
 import styles from './Pagination.module.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react';
-import { setCurrentCountries } from '../../redux/actions'
+import { setCurrentCountries, setCurrentPage } from '../../redux/actions'
 
 const Pagination = ()=> {
-    const { countriesFilter } = useSelector( state => state )
-    const [ pages, setPages ] = useState([])
+    const { countriesFilter, currentPageCountries } = useSelector( state => state )
+    const [ pages, setPages ] = useState( [] )
+    // const [ pageSelected, setPageSelected ] = useState( 1 )
+
     const disppatch = useDispatch()
 
-    const handleClickPage = (event)=> { 
-        event.preventDefault()
-        const posInitCountryPage = ( Number( event.target.outerText ) -1 ) * 10
+    const handleClickPage = (event)=> {
+        const numberPage = Number( event.target.outerText )
+        const posInitCountryPage = ( numberPage -1 ) * 10
         const posEndCountryPage = posInitCountryPage + 10
-        console.log(countriesFilter.slice( posInitCountryPage, posEndCountryPage ))
+        console.log('Entro a Click handler');
+        disppatch( setCurrentPage( numberPage ) )
         disppatch(setCurrentCountries( countriesFilter.slice( posInitCountryPage, posEndCountryPage ) ) )
-        // console.log(Number(event.target.outerText))
     }
+
     useEffect(()=> {
-        const nPages = Math.ceil(countriesFilter.length / 10)
+        const nPages = Math.ceil( countriesFilter.length / 10 )
         const arrayPages = []
 
         for( let i=1; i <= nPages; i++ ){
             arrayPages.push( i ) 
         }
         setPages( arrayPages )
-    }, [countriesFilter])
-
+    }, [ countriesFilter ] )
+    
     return(
         <div className= { styles.mainContainer } >
+            {console.log(currentPageCountries)}
             { pages && pages.map( page => 
                 <span 
-                    className= { styles.pagePAgination } 
+                    className= { currentPageCountries === Number(page) ? styles.pagePageSelected : styles.pagePagination } 
                     key= { page }
                     name= { page }
                     onClick={ handleClickPage }>
