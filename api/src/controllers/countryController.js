@@ -23,10 +23,10 @@ const getCountryById = async ( idPais )=>{
     const countryById = await Country.findByPk( idPais, 
         { include: { 
             model: Activity,            
-            attributes: [ "id","name", "dificulty", "duration", "season" ],
+            attributes: [ "name", "dificulty", "duration", "seasons" ],
             through: { attributes: [] }
         } } 
-        )
+    )
 
     if( !countryById ) throw Error( `El país con id '${ idPais }' no existe.` )
     

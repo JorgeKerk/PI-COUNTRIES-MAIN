@@ -4,49 +4,129 @@ import  {
     SET_CURRENT_COUNTRIES,
     CREATE_ACTIVITY, 
     GET_ALL_ACTIVITIES,
-    SET_CURRENT_PAGE
+    SET_CURRENT_PAGE, 
+    SET_NAME_COUNTRIES,
+    SET_FILTER_BY_CONTINENTS,
+    SET_FILTER_BY_ACTIVITY,
+    SET_ORDER, 
+    SET_NEW_ACTIVITY,
+    CLEAR_NEW_ACTIVITY,
+    SET_ERROR
 } from '../actionsTypes'
 
+import applyFiltersInCountries from './functionsReducer'
+
 const initialState = {
+    allCountries: [],
     countries: [],
     countriesFilter: [],
     currentCountries: [],
     currentPageCountries: 0,
-    // currentOrdeningCountries: '',
-    // currentFilteringCountries: {
-    //     name: '',
-    //     continent: ''
-    // },
-    activities: []
+    countriesFilterSettings: {
+        name: '',
+        continents: [],
+        activity: 'All',
+        order: [ 'name', 'ascending' ]
+    },
+    activities: [],
+    newActivity: {
+        name: '',
+        dificulty: 0,
+        duration: 0,
+        seasons: [],
+        countriesIds: []
+    },
+    error: ''
 }
 
 const rootReducer = ( state = initialState, { type, payload } )=> {
     switch( type ){
         case GET_ALL_COUNTRIES:
-            return { 
-                ...state, 
-                countries: payload, 
-                countriesFilter: payload, 
-                currentCountries: payload.slice(0,10),
-                currentPageCountries: 1
+            const newState = applyFiltersInCountries( '', state, payload )
+
+            return {
+                ...newState,
+                allCountries: payload
             }
         case GET_COUNTRIES_BY_NAME:
+            return applyFiltersInCountries( '', state, payload )
+
+        case SET_CURRENT_COUNTRIES:
             return { 
                 ...state, 
-                countriesFilter: payload, 
-                currentCountries: payload.slice(0,10),
-                currentPageCountries: 1
-             }
-        case SET_CURRENT_COUNTRIES:
-            return { ...state, currentCountries: payload }
+                currentCountries: payload 
+            }
+
         case SET_CURRENT_PAGE:
-            return { ...state, currentPageCountries: payload }
+            return { 
+                ...state, 
+                currentPageCountries: payload 
+            }
+
         case CREATE_ACTIVITY:
-            return { ...state, activities: [ ...state.activities, payload ] }
+            return { 
+                ...state,
+                newActivity: { ...initialState.newActivity },
+                activities: [ 
+                    ...state.activities, 
+                    payload 
+                ] 
+            }
+
         case GET_ALL_ACTIVITIES:
-            return { ...state, activities: payload } 
+            return { 
+                ...state, 
+                error: '', 
+                activities: payload 
+            } 
+
+        case SET_NAME_COUNTRIES:
+            return { 
+                ...state, 
+                countriesFilterSettings: { 
+                    ...state.countriesFilterSettings, 
+                    name: payload 
+                } 
+            }
+
+        case SET_FILTER_BY_CONTINENTS:
+            return applyFiltersInCountries( 'continents', state, payload )
+        
+        case SET_FILTER_BY_ACTIVITY:
+            return applyFiltersInCountries( 'activity', state, payload )
+            
+        case SET_ORDER: 
+            return applyFiltersInCountries( 'order', state, payload )
+        
+        case SET_NEW_ACTIVITY:
+            return {
+                ...state,
+                newActivity: 
+                    { 
+                        ...state.newActivity, 
+                        [ payload.prop ]: payload.value 
+                    }
+            }
+
+        case SET_ERROR:
+            return {
+                ...state,
+                countries: [],
+                countriesFilter: [],
+                currentCountries: [],
+                error: payload
+            }
+        
+        case CLEAR_NEW_ACTIVITY:
+            return {
+                ...state,
+                newActivity: { ...initialState.newActivity }
+            }
+
         default:
-            return { ...state }
+            return { 
+                ...state 
+            }
     }
 }
 

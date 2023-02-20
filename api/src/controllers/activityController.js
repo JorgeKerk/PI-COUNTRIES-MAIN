@@ -1,8 +1,16 @@
 const { Activity, Country } = require( '../db' )
 
-const getAllActivities = async ()=> await Activity.findAll()
+const getAllActivities = async ()=> await Activity.findAll( 
+    { 
+        include: { 
+            model: Country,            
+            attributes: [ "id" ],
+            through: { attributes: [] }
+        } 
+    } 
+)
 
-const createActivity = async ( name, dificulty, duration, season, countriesIds )=>{
+const createActivity = async ( name, dificulty, duration, seasons, countriesIds )=>{
     if( !name ) throw Error( `Debe especificar el 'nombre' de la actividad` )
     name = name.toUpperCase()
 
@@ -14,10 +22,17 @@ const createActivity = async ( name, dificulty, duration, season, countriesIds )
     dificulty = Number( dificulty )
     if( dificulty < 1 || dificulty > 5 ) throw Error( `La 'dificultad' debe ser un valor entero entre el 1 y el 5 inclusive` )
     
-    if( !season ) throw Error( `Debe especificar una 'Temporada' (Valores permitidos: 'verano', 'otoño', 'invierno' o 'primavera')`)
-    const estaciones = ['verano', 'otoño', 'invierno', 'primavera']
-    const findSeasons = estaciones.indexOf( season.toLowerCase() )
-    if( findSeasons === -1 ) throw Error( `'${ season }' no es una Temporada válida (Valores permitidos: 'verano', 'otoño', 'invierno' o 'primavera')` )
+    if( !seasons ) throw Error( `Debe especificar una 'Temporada' (Valores permitidos: 'verano', 'otoño', 'invierno' o 'primavera')`)
+    let seasonValues = ['summer', 'autumn', 'winter', 'spring']
+    seasons = seasons.map( season => {
+        const seasonLow = season.toLowerCase()
+        if( seasonValues.includes( seasonLow ) ){
+            seasonValues = seasonValues.filter( seasonV => seasonV !== seasonLow )
+            return season.at().toUpperCase().concat( season.slice( 1 ) )
+        }else {
+            throw Error( `'${ season }' está repetido o no es una temporada válida (Valores permitidos: 'verano', 'otoño', 'invierno' o 'primavera')` ) 
+        }
+    })
     
     if( !countriesIds || !countriesIds.length ) throw Error( `Debe especificar aunque sea un Id de país` )
     const promCountriesIds = countriesIds.map( async ( countryId ) => {
@@ -37,7 +52,7 @@ const createActivity = async ( name, dificulty, duration, season, countriesIds )
             name, 
             dificulty, 
             duration, 
-            season: estaciones[ findSeasons ].at().toUpperCase().concat( estaciones[ findSeasons ].slice( 1 ))
+            seasons
         }
     )
 

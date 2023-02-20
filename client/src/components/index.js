@@ -1,15 +1,34 @@
-import Background from './Background/Background'
-import NavBar from './NavBar/NavBar'
-import CardsContainerCountries from './CardsContainerCountries/CardsContainerCountries'
-import CardCountry from './CardCountry/CardCountry'
-import Pagination from './Pagination/Pagination'
-import SearchBar from './SearchBar/SearchBar'
+import { CardDetailCountry, CardDetailCountryActivities } from './DetailComponents'
+import {
+    CardCountry,
+    CardsContainerCountries,
+    NavBar,
+    Pagination,
+    SearchBar
+} from './HomeComponents'
+import { Background, ErrorMsj } from './CommonComponents'
+import { 
+    ActivityDificulty, 
+    ActivityDuration, 
+    ActivityName, 
+    ActivitySeasons, 
+    CountriesActivity 
+} from './FormComponents'
+
 
 export {
     Background,
-    NavBar,
-    CardsContainerCountries,
     CardCountry,
+    CardDetailCountry,
+    CardDetailCountryActivities,
+    CardsContainerCountries,
+    ErrorMsj,
+    NavBar,
     Pagination,
-    SearchBar
+    SearchBar,
+    ActivityDificulty,
+    ActivityDuration,
+    ActivityName,
+    ActivitySeasons,
+    CountriesActivity
 }

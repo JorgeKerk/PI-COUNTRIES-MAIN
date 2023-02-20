@@ -2,21 +2,25 @@ import styles from './Home.module.css'
 import { CardsContainerCountries, Pagination, SearchBar } from "../../components"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
-import { getAllCountries } from '../../redux/actions';
+import { getAllCountries, getAllActivities } from '../../redux/actions';
 
 const Home = ()=> {
-    const { countries } = useSelector( state => state )
     const dispatch = useDispatch()
+    const { allCountries } = useSelector( state => state )
+    const initialHome = allCountries.length === 0
 
     useEffect( ()=> {
-        if( !countries.length ) dispatch( getAllCountries() )
-    }, [ countries, dispatch ] )
+        if( initialHome ) {
+            dispatch( getAllCountries() )
+            dispatch( getAllActivities() )
+        }
+    }, [ initialHome, dispatch ] )
 
     return(
         <div className= { styles.mainContainer } >
-                <SearchBar />
+            <SearchBar />
             <div className= { styles.subContainer } >
-                <CardsContainerCountries />
+                { !initialHome && <CardsContainerCountries />}
                 <Pagination />
             </div>
         </div>

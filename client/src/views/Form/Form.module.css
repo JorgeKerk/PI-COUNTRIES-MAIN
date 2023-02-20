@@ -1,0 +1,44 @@
+.mainContainer {
+    height: 77vh;
+    width: 89vw;
+    border-radius: 1rem;
+    background-color: rgba(224, 255, 255, 0.7);
+    border: 1px solid black;
+    padding: 3rem;
+}
+
+.subContainer {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+}
+
+.error {
+    color: rgb(182, 40, 40);
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    background-color: rgba(238, 87, 87, 0.35);
+    border-radius: 1rem;
+    padding: 0.2rem 0.5rem;
+    width: fit-content;
+    height: fit-content;
+}
+
+.button, .buttonDisabled {
+    font-weight: bold;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: 0.3s ease-in;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.button:hover {
+    transform: scale(1.2);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: rgb(107, 201, 0);
+    text-shadow: 1px 1px 1px black;
+}

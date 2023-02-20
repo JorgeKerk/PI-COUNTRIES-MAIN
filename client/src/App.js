@@ -12,7 +12,7 @@ function App() {
        {location &&  <NavBar />}
         <Route exact path='/' render= { ()=> <Landing /> } />
         <Route exact path='/home' render= { ()=> <Home /> } />
-        <Route exact path='/detail/:idFlag' render= { ()=> <Detail /> } />
+        <Route exact path='/detail/:idCountry' render= { ()=> <Detail /> } />
         <Route exact path='/create' render= { ()=> <Form /> } />
       </Background>
     </>

@@ -10,9 +10,10 @@ const getAllActivitiesHandler = async ( req, res )=> {
 }
 
 const createActivityHandler = async ( req, res )=> {
-    const { name, dificulty, duration, season, countriesIds } = req.body
+    const { name, dificulty, duration, seasons, countriesIds } = req.body
     try {
-        const newActivity = await createActivity( name, dificulty, duration, season, countriesIds )
+        console.log(name, dificulty, duration, seasons, countriesIds);
+        const newActivity = await createActivity( name, dificulty, duration, seasons, countriesIds )
         return res.status( 200 ).json( newActivity )
     } catch ( error ) {
         return res.status( 400 ).json( { error: error.message } )
