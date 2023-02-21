@@ -2,6 +2,7 @@ import  {
     GET_ALL_COUNTRIES,  
     GET_COUNTRIES_BY_NAME,
     SET_CURRENT_COUNTRIES,
+    SET_COUNTRIES_BY_ACITVITIES,
     CREATE_ACTIVITY, 
     GET_ALL_ACTIVITIES,
     SET_CURRENT_PAGE, 
@@ -36,6 +37,13 @@ const initialState = {
         seasons: [],
         countriesIds: []
     },
+    errorNewActivity: {
+        name: 'The name of the activity cannot be less than 3 characters',
+        dificulty: 'Must select a difficulty',
+        duration: 'Duration must be greater than or equal to 1',
+        seasons: 'Must select at least one season',
+        countriesIds: 'Must select at least one country'
+    },
     error: ''
 }
 
@@ -66,11 +74,13 @@ const rootReducer = ( state = initialState, { type, payload } )=> {
         case CREATE_ACTIVITY:
             return { 
                 ...state,
+                allCountries: state.allCountries.map( country => ( { ...country, selected: false } ) ),
                 newActivity: { ...initialState.newActivity },
+                errorNewActivity: { ...initialState.errorNewActivity },
                 activities: [ 
                     ...state.activities, 
                     payload 
-                ] 
+                ]
             }
 
         case GET_ALL_ACTIVITIES:
@@ -105,6 +115,11 @@ const rootReducer = ( state = initialState, { type, payload } )=> {
                     { 
                         ...state.newActivity, 
                         [ payload.prop ]: payload.value 
+                    },
+                errorNewActivity:
+                    {
+                        ...state.errorNewActivity,
+                        [ payload.prop ]: payload.error
                     }
             }
 
@@ -120,7 +135,14 @@ const rootReducer = ( state = initialState, { type, payload } )=> {
         case CLEAR_NEW_ACTIVITY:
             return {
                 ...state,
-                newActivity: { ...initialState.newActivity }
+                newActivity: { ...initialState.newActivity },
+                errorNewActivity: { ...initialState.errorNewActivity }
+            }
+        
+        case SET_COUNTRIES_BY_ACITVITIES:
+            return {
+                ...state,
+                allCountries: state.allCountries.map( country => ( { ...country, selected: false } ) )
             }
 
         default:

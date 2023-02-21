@@ -1,7 +1,8 @@
 import { 
     getAllCountries, 
     getCountryByName,
-    setCurrentCountries
+    setCurrentCountries,
+    setCountriesByActivities
 } from './countries'
 
 import { 
@@ -24,6 +25,7 @@ export {
     getAllCountries, 
     getCountryByName,
     setCurrentCountries,
+    setCountriesByActivities,
     createActivity,
     getAllActivities,
     setCurrentPage,

@@ -1,28 +1,26 @@
 // import styles from './ActivitySeasons.module.css';
 
-import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setNewActivity } from "../../../redux/actions"
 import { ErrorMsj } from "../../CommonComponents"
 
 const ActivitySeasons = ()=> {
-    const { seasons } = useSelector( state => state.newActivity )
+    const { newActivity, errorNewActivity } = useSelector( state => state )
     const dispatch = useDispatch()
-    const [ errors, setErrors ] = useState( 'Must select at least one season' )
 
     const handleChange = ( event ) => {
         const seasonSelected = event.target.value
-        let newSeasons = [ ...seasons ]
+        let newSeasons = [ ...newActivity.seasons ]
 
         event.target.checked
             ? newSeasons.push( event.target.value )
             : newSeasons = newSeasons.filter( season => season !== seasonSelected )
  
-        !newSeasons.length
-            ? setErrors( 'Must select at least one season' )
-            : setErrors( '' )
+        const errorMsg = !newSeasons.length
+            ? 'Must select at least one season' 
+            : ''
 
-        dispatch( setNewActivity( { prop: 'seasons', value: newSeasons } ) )
+        dispatch( setNewActivity( { prop: 'seasons', value: newSeasons, error: errorMsg } ) )
     }
 
     return(
@@ -44,7 +42,8 @@ const ActivitySeasons = ()=> {
                 <input type= 'checkbox' id= 'spring' name= 'seasons' value= 'spring' />
                 <label htmlFor='spring'> Spring</label>
             </div>
-            { errors && <ErrorMsj error= { errors } isActivity= { true } /> }
+
+            { errorNewActivity.seasons && <ErrorMsj error= { errorNewActivity.seasons } isActivity= { true } /> }
         </div>
     )
 }

@@ -3,6 +3,7 @@ import {
         GET_ALL_COUNTRIES, 
         GET_COUNTRIES_BY_NAME,
         SET_CURRENT_COUNTRIES,
+        SET_COUNTRIES_BY_ACITVITIES,
         SET_ERROR
 } from '../actionsTypes'
 
@@ -40,8 +41,11 @@ const getCountryByName =  ( name )=> {
 
 const setCurrentCountries = ( countriesFiltered )=> ( { type: SET_CURRENT_COUNTRIES, payload: countriesFiltered } )
 
+const setCountriesByActivities = ()=> ( { type: SET_COUNTRIES_BY_ACITVITIES } )
+
 export { 
     getAllCountries, 
     getCountryByName,
-    setCurrentCountries
+    setCurrentCountries,
+    setCountriesByActivities
 }

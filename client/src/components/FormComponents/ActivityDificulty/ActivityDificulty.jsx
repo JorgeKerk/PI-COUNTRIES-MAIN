@@ -1,22 +1,17 @@
 // import styles from './ActivityDificulty.module.css';
 
-import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { setNewActivity } from "../../../redux/actions"
 import { ErrorMsj } from "../../CommonComponents"
 
 const ActivityDificulty = ()=> {
+    const { errorNewActivity } = useSelector( state => state )
     const dispatch = useDispatch()
-    const [errorMsg, setErrorMsg ] = useState( '' )
 
     const handleChange = ( event ) => {
-        if( errorMsg.length ) setErrorMsg( '' )
-        dispatch( setNewActivity( { prop: 'dificulty', value: parseInt(event.target.value) } ) )
+        const valueSelect = parseInt(event.target.value)
+        dispatch( setNewActivity( { prop: 'dificulty', value: valueSelect, error: '' } ) )
     }
-
-    useEffect( ()=> {
-        setErrorMsg(  'Must select a difficulty' )
-    },[])
 
     return(
         <div onChange= { handleChange }>
@@ -66,7 +61,7 @@ const ActivityDificulty = ()=> {
                 />
                 <label htmlFor='extreme'> Extreme</label>
             </div>
-             { errorMsg && <ErrorMsj error= { errorMsg } isActivity= { true } /> }
+             { errorNewActivity.dificulty && <ErrorMsj error= { errorNewActivity.dificulty } isActivity= { true } /> }
         </div>
     )
 }

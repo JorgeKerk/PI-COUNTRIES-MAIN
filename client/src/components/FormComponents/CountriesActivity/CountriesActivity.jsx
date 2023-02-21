@@ -5,19 +5,16 @@ import { setNewActivity } from '../../../redux/actions';
 import { ErrorMsj } from '../../CommonComponents';
 
 const CountriesActivity = ()=> {
-    const { allCountries } = useSelector( state => state )
+    const { allCountries, errorNewActivity } = useSelector( state => state )
     const dispatch = useDispatch()
-    const [ selCountries, setSelCountries ] = useState( { values: [], error: ''} )
+    const [ selCountries, setSelCountries ] = useState( [] )
 
     useEffect( ()=>{
-        if( !selCountries.values.length ){
-            const allCountriesWithSelected = allCountries.map( country => ( { ...country, selected: false } ) )
-            setSelCountries( { values: allCountriesWithSelected, error: 'Must select at least one country' } )
-        }
-    }, [allCountries, selCountries] )
+            setSelCountries( allCountries )
+    }, [allCountries] )
  
     const handleClickCountry = ( event )=> {
-        const selCountriesChanged = selCountries.values.map( country => {
+        const selCountriesChanged = selCountries.map( country => {
             return country.name === event.target.name
             ? { ...country, selected: !country.selected }
             : country
@@ -26,14 +23,14 @@ const CountriesActivity = ()=> {
         const countriesActivity = selCountriesChanged.filter(country => country.selected ).map( country => country.id )
         let errorMsg = !countriesActivity.length ? 'Must select at least one season' : ''
 
-        setSelCountries( { values: selCountriesChanged, error: errorMsg } )
-        dispatch( setNewActivity( { prop: 'countriesIds', value: countriesActivity } ) )
+        setSelCountries( selCountriesChanged )
+        dispatch( setNewActivity( { prop: 'countriesIds', value: countriesActivity, error: errorMsg } ) )
     }
 
     const displayCountries = ( selected )=>(
         <div className= { styles.countries }>
             {
-                selCountries.values.map( country =>{
+                selCountries.map( country =>{
                     return ( country.selected === selected )
                         ?   <div className= { styles.country } key= { country.name } >
                                 <div>
@@ -51,7 +48,7 @@ const CountriesActivity = ()=> {
                         : null
                 })
             }
-            { selCountries.error && <ErrorMsj error= { selCountries.error } isActivity= { true } /> }
+            { selected && errorNewActivity.countriesIds && <ErrorMsj error= { errorNewActivity.countriesIds } isActivity= { true } /> }
         </div>
     )
 
@@ -59,11 +56,11 @@ const CountriesActivity = ()=> {
         <div className= { styles.mainContainer } >
             <div>
                 <h1>Countries with this activity</h1>
-                { selCountries.values.length && displayCountries( true ) }
+                { selCountries.length && displayCountries( true ) }
             </div>
             <div>
                 <h1>Available countries</h1>
-                { selCountries.values.length && displayCountries( false ) }
+                { selCountries.length && displayCountries( false ) }
             </div>
         </div>
     )

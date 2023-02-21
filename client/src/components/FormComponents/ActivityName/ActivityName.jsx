@@ -6,8 +6,8 @@ import { setNewActivity } from "../../../redux/actions"
 import { ErrorMsj } from "../../CommonComponents"
 
 const ActivityName = ()=> {
-    const { activities } = useSelector( state => state )
-    const [ nameActivity, setNameActivity ] = useState( { name: '', error: 'The name of the activity cannot be less than 3 characters' } )
+    const { activities, errorNewActivity } = useSelector( state => state )
+    const [ nameActivity, setNameActivity ] = useState( '' )
     const dispatch = useDispatch()
 
     const handleChange = ( event )=> {
@@ -21,8 +21,8 @@ const ActivityName = ()=> {
         if( newNameActivity && activities.find( activity => activity.name === newNameActivity.toUpperCase() ) ) 
             errorMsg = 'Activity name already exists'
 
-        setNameActivity( { name: newNameActivity, error: errorMsg } )
-        dispatch( setNewActivity( { prop: 'name', value: errorMsg ? '' : newNameActivity } ) )
+        setNameActivity( newNameActivity )
+        dispatch( setNewActivity( { prop: 'name', value: errorMsg ? '' : newNameActivity, error: errorMsg } ) )
     }
 
     return(
@@ -37,7 +37,7 @@ const ActivityName = ()=> {
                 onChange= { handleChange }
             />
 
-            { nameActivity.error && <ErrorMsj error= { nameActivity.error } isActivity= { true } /> }
+            { errorNewActivity.name && <ErrorMsj error= { errorNewActivity.name } isActivity= { true } /> }
         </>
     )
 }

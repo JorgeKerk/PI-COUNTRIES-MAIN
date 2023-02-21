@@ -8,27 +8,27 @@ import {
 } from '../../components'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { getAllCountries, clearNewActivity, createActivity, getAllActivities } from '../../redux/actions'
+import { clearNewActivity, createActivity, setCountriesByActivities } from '../../redux/actions'
 
 
 const Form = ()=> {
-    const { newActivity, allCountries, activities } = useSelector( state => state )
+    const { newActivity } = useSelector( state => state )
     const dispatch = useDispatch()
 
     const controlErrors = ( { name, dificulty, duration, seasons, countriesIds } )=> 
         !name || !dificulty || !duration || !seasons.length || !countriesIds.length
     
     useEffect( ()=>{
-        if( !allCountries.length ) dispatch( getAllCountries() )
+        dispatch( setCountriesByActivities() )
         return ()=>{
-            if( !activities.length ) dispatch( getAllActivities() )
             dispatch( clearNewActivity() )
         }
-    }, [activities, allCountries, dispatch])
+    }, [dispatch])
 
     const handleSubmit = ( event )=> {
+        event.preventDefault()
         dispatch( createActivity( newActivity ) )
-        // event.preventDefault()
+        event.target.reset()
     }
     
     return(
