@@ -1,5 +1,6 @@
 const { getAllActivities, createActivity } = require( '../controllers' )
 
+// Gets all the activities of the DB
 const getAllActivitiesHandler = async ( req, res )=> {
     try {
         const allActivities = await getAllActivities()
@@ -9,10 +10,10 @@ const getAllActivitiesHandler = async ( req, res )=> {
     }
 }
 
+// Create a new Activity in the DB with the parameters entered by BODY
 const createActivityHandler = async ( req, res )=> {
     const { name, dificulty, duration, seasons, countriesIds } = req.body
     try {
-        console.log(name, dificulty, duration, seasons, countriesIds);
         const newActivity = await createActivity( name, dificulty, duration, seasons, countriesIds )
         return res.status( 200 ).json( newActivity )
     } catch ( error ) {

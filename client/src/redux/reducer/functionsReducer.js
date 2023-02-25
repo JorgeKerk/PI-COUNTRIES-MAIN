@@ -50,6 +50,7 @@ const applyFiltersInCountries = ( newfilter, state, payload )=> {
         return { 
                 ...state,
                 error: msgError, 
+                currentPageCountries: 0,
                 countriesFilter: newCountriesFiltered, 
                 countriesFilterSettings: newCountriesFilterSettings
             } 
@@ -68,6 +69,7 @@ const applyFiltersInCountries = ( newfilter, state, payload )=> {
             ...state,
             error: msgError,
             countries: payload, 
+            currentPageCountries: 0,
             countriesFilter: countriesFiltered
         }
 

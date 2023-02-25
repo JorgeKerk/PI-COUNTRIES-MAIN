@@ -1,20 +1,29 @@
-.mainContainer, .mainContainerNotFound {
-    width: 76.4vw;
-    height: 76vh;
+.mainContainer {
+    width: 77vw;
+    height: 71.7vh;
+    display: flex;
     border: 1px solid black;
     border-radius: 1rem;
-    padding: 1.5rem 1rem;
+    padding: 1rem;
     background-color: rgba(224, 255, 255, 0.7);
-}
-
-.mainContainer {
-    display: grid;
-    grid-template-columns: repeat( 5, 1fr);
-    gap: 1rem;
-}
-
-.mainContainerNotFound {
-    display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+}
+
+.subContainer, .subContainerError {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.subContainer {
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: first baseline;
+}
+
+.subContainerError {
+    align-items: center;
+    justify-content: center;
 }

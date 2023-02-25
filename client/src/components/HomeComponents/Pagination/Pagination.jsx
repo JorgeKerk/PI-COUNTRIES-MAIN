@@ -22,14 +22,16 @@ const Pagination = ()=> {
     useEffect(()=> {
         const nPages = Math.ceil( countriesFilter.length / counntriesPerPages )
         const arrayPages = []
-
+        
         for( let i=1; i <= nPages; i++ ){
             arrayPages.push( i ) 
         }
         setPages( arrayPages )
-        dispatch( setCurrentPage( 1 ) )
-        dispatch( setCurrentCountries( countriesFilter.slice( 0, counntriesPerPages ) ) )
-    }, [countriesFilter, dispatch] )
+        if(currentPageCountries===0){
+            dispatch( setCurrentPage( 1 ) )
+            dispatch( setCurrentCountries( countriesFilter.slice( 0, counntriesPerPages ) ) )
+        }
+    }, [countriesFilter, currentPageCountries, dispatch] )
     
     return(
         <div className= { styles.mainContainer } >

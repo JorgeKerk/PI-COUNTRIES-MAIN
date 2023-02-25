@@ -2,7 +2,7 @@ import styles from './Home.module.css'
 import { CardsContainerCountries, Pagination, SearchBar } from "../../components"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react';
-import { getAllCountries, getAllActivities } from '../../redux/actions';
+import { getAllCountries, getAllActivities, setCurrentPage } from '../../redux/actions';
 
 const Home = ()=> {
     const dispatch = useDispatch()
@@ -13,6 +13,7 @@ const Home = ()=> {
         if( initialHome ) {
             dispatch( getAllCountries() )
             dispatch( getAllActivities() )
+            dispatch( setCurrentPage( 0 ) )
         }
     }, [ initialHome, dispatch ] )
 

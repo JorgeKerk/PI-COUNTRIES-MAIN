@@ -28,7 +28,7 @@ const CountriesActivity = ()=> {
     }
 
     const displayCountries = ( selected )=>(
-        <div className= { styles.countries }>
+        <div className= { selected && errorNewActivity.countriesIds? styles.countriesError : styles.countries }>
             {
                 selCountries.map( country =>{
                     return ( country.selected === selected )

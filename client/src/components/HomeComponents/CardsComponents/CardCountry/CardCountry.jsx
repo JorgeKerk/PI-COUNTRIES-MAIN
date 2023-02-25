@@ -6,7 +6,7 @@ const CardCountry = ( { id, name, flag, continent, population } )=> {
         <Link to={ `/detail/${ id }` } className={ styles.link } >
             <div className= { styles.mainContainer } >
                 <img src={ flag } alt={`Flag to ${ name }`} className= { styles.imgFlag } />
-                <h2>{ name }</h2>
+                <h2 className= { styles.nameCountry }>{ name }</h2>
                 <div className= { styles.subContainer }> 
                     <div>
                         <p><strong>Continent:</strong></p>

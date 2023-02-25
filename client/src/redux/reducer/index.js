@@ -77,10 +77,7 @@ const rootReducer = ( state = initialState, { type, payload } )=> {
                 allCountries: state.allCountries.map( country => ( { ...country, selected: false } ) ),
                 newActivity: { ...initialState.newActivity },
                 errorNewActivity: { ...initialState.errorNewActivity },
-                activities: [ 
-                    ...state.activities, 
-                    payload 
-                ]
+                activities: [ ...state.activities, payload ]
             }
 
         case GET_ALL_ACTIVITIES:

@@ -1,6 +1,7 @@
 .mainContainer{
     color: black;
-    height: 30vh;
+    width: 12.08rem;
+    height: 13rem;
     background-color: rgba(255, 224, 253, 0.6);
     display: flex;
     padding: 1rem;
@@ -14,13 +15,14 @@
 
 .mainContainer:hover {
     transform: scale(1.1);
-    text-shadow: 0px 0px 2px rgb(64, 102, 226);
+    text-shadow: 0px 0px 2px rgb(0, 255, 13);;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
-.mainContainer h3 {
-    display: flex;
-    width: 100%;
-    justify-content: center;
+.nameCountry {
+    font-size: 1.2rem;
+    color: rgb(0, 0, 0);
+    text-shadow: 0px 0px 1px black;
 }
 
 .imgFlag {

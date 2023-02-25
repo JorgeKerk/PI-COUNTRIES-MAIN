@@ -1,5 +1,9 @@
 .input {
-    border-radius: 1rem;
+    /* border-radius: 1rem; */
     padding: 0.5rem;
     margin-top: 0.5rem;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
 }

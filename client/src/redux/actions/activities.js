@@ -14,13 +14,12 @@ const createActivity =  ( activity )=> {
             const { data } = await axios.post( `http://localhost:3001/activities/`, activity )
             return distpach( { type: CREATE_ACTIVITY, payload: data } )
         } catch (error) {
-            window.alert(error.message);
-            // return distpach( 
-            //     { 
-            //         type: SET_ERROR, 
-            //         payload: `Could not create activity ${ activity.name }. Type Error: ${error.message}` 
-            //     } 
-            // )
+            return distpach( 
+                { 
+                    type: SET_ERROR, 
+                    payload: `Could not create activity ${ activity.name }. Type Error: ${error.message}` 
+                } 
+            )
         }
     }
 }

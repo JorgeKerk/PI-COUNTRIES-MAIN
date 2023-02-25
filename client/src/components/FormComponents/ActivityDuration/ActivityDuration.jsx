@@ -1,4 +1,4 @@
-// import styles from './ActivityDuration.module.css';
+import styles from './ActivityDuration.module.css';
 
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -32,16 +32,18 @@ const ActivityDuration = ()=> {
     
     return(
         <>
-            <label htmlFor='duration'>Duration </label>
-            <input 
-                type= 'number' 
-                id= 'duration' 
-                name= 'duration' 
-                value= { durationValue.duration }
-                onChange= { handleChange }
-            />
-            <span>{ !durationValue.duration ? '' : Math.abs(durationValue.duration) === 1 ? ' hour' : ' hours' }</span>
-            { errorNewActivity.duration && <ErrorMsj error= { errorNewActivity.duration } isActivity= { true} /> }
+            <div className= { styles.activityDuration }>
+                <label htmlFor='duration'>Duration </label>
+                <input 
+                    type= 'number' 
+                    id= 'duration' 
+                    name= 'duration' 
+                    value= { durationValue.duration }
+                    onChange= { handleChange }
+                />
+                <span>{ !durationValue.duration ? '' : Math.abs(durationValue.duration) === 1 ? ' hour' : ' hours' }</span>
+                { errorNewActivity.duration && <ErrorMsj error= { errorNewActivity.duration } isActivity= { true} /> }
+            </div>
         </>
     )
 }

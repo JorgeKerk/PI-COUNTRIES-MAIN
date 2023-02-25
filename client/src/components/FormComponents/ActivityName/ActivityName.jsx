@@ -1,4 +1,4 @@
-// import styles from './ActivityName.module.css';
+import styles from './ActivityName.module.css';
 
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -27,17 +27,20 @@ const ActivityName = ()=> {
 
     return(
         <>
-            <label htmlFor='name'>Activity name</label>
-            <input 
-                type= 'text' 
-                id= 'name' 
-                name= 'name' 
-                placeholder= 'name of activity...' 
-                value= { nameActivity.name }
-                onChange= { handleChange }
-            />
-
-            { errorNewActivity.name && <ErrorMsj error= { errorNewActivity.name } isActivity= { true } /> }
+            <div className= { styles.activityName }>
+                <label htmlFor='name'>Activity name</label>
+                <input 
+                    type= 'text' 
+                    id= 'name' 
+                    name= 'name' 
+                    placeholder= 'name of activity...' 
+                    value= { nameActivity.name }
+                    onChange= { handleChange }
+                />
+            </div>
+            <div className= { styles.error }>
+                { errorNewActivity.name && <ErrorMsj error= { errorNewActivity.name } isActivity= { true } /> }
+            </div>
         </>
     )
 }

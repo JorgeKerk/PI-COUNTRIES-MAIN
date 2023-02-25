@@ -8,20 +8,23 @@ const CardsContainerCountries = ()=> {
     const existError = error || !currentCountries.length
 
     return(
-        <div className= { !existError ? styles.mainContainer : styles.mainContainerNotFound } >
-            { !existError
-                ? currentCountries.map( ( { id, name, flag, continent, population } )=> (
-                    <CardCountry 
-                        key= { id} 
-                        id= { id }
-                        name= { name }
-                        flag= { flag }
-                        continent= { continent }
-                        population= { population }
-                    />
-                    ))
-                : <ErrorMsj error= { error } />
-            }
+        <div className= { styles.mainContainer } >
+            <div className= { existError? styles.subContainerError : styles.subContainer } >
+                { !existError
+                    ? 
+                    currentCountries.map( ( { id, name, flag, continent, population } )=> (
+                        <CardCountry 
+                            key= { id} 
+                            id= { id }
+                            name= { name }
+                            flag= { flag }
+                            continent= { continent }
+                            population= { population }
+                        />
+                        ))
+                    : <ErrorMsj error= { error } />
+                }
+            </div>
         </div>
     )
 }

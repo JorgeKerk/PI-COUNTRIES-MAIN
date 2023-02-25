@@ -1,12 +1,21 @@
-import { CardDetailCountry, CardDetailCountryActivities } from './DetailComponents'
+import { 
+    CardDetailCountry, 
+    CardDetailCountryActivities 
+} from './DetailComponents'
+
 import {
     CardCountry,
     CardsContainerCountries,
-    NavBar,
     Pagination,
     SearchBar
 } from './HomeComponents'
-import { Background, ErrorMsj } from './CommonComponents'
+
+import { 
+    Background, 
+    ErrorMsj,
+    NavBar,
+} from './CommonComponents'
+
 import { 
     ActivityDificulty, 
     ActivityDuration, 
