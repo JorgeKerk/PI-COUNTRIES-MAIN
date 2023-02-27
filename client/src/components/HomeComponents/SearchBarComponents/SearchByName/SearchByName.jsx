@@ -1,29 +1,53 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styles from './SearchByName.module.css';
-import { getCountryByName, setNamCountries } from '../../../../redux/actions';
+import { getCountryByName } from '../../../../redux/actions';
+import { useState } from 'react';
 
 const SearchByName = ()=> {
-    const { name } = useSelector( state => state.countriesFilterSettings )
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
+  const [ countryName, setCountryName ] = useState( '' )
+  const [ countrySearched, setCountrySearched ] = useState( '' )
 
-    const handleChange = ( event )=> {
-        const nameSearched = event.target.value
-
-        dispatch( setNamCountries( nameSearched ) )
-        dispatch( getCountryByName( nameSearched ) )
+  const handleChange = ( event )=> {
+    if( countrySearched ) {
+      handleClickSearched( false )
     }
+    setCountryName( event.target.value )
+  }
 
-    return(
-        <>
-            <h2>Search Country</h2>
-            <input 
-                className= { styles.input } 
-                type='text' 
-                placeholder= 'Country name...' 
-                value= { name } 
-                onChange= { handleChange }/>
-        </>
-    )
+  const handleClickSearch = () => {
+    setCountrySearched( countryName )
+    dispatch( getCountryByName( countryName ) )
+  }
+
+  const handleClickSearched = ( clearCountryName )=> {
+    if( clearCountryName ) setCountryName( '' )
+    setCountrySearched( '' )
+    dispatch( getCountryByName( '' ) )
+  }
+
+  return(
+    <>
+      <h2>Search Country</h2>
+      <div className= { styles.searchContainer } >
+        <input 
+          type='text' 
+          placeholder= 'Country name...' 
+          value= { countryName } 
+          onChange= { handleChange }
+        />
+        <button onClick= { handleClickSearch } >🔎</button>
+      </div>
+      <div className= { styles.searchedContainer } >
+        <p>Word searched</p>
+        { 
+          countrySearched && 
+          <button onClick= { ()=> handleClickSearched( true ) } >{ countrySearched }</button> 
+        }
+        <hr />
+      </div>
+    </>
+  )
 }
 
 export default SearchByName

@@ -1,11 +1,13 @@
 const { getAllCountries, getCountryById } = require( './countryController' )
-const { getAllActivities, createActivity } = require( './activityController' )
+const { getAllActivities, createActivity, updateActivity, deleteActivity } = require( './activityController' )
 const saveApiData = require('./saveApiData.js')
 
 module.exports = {
-    saveApiData,
-    getAllCountries, 
-    getCountryById,
-    getAllActivities, 
-    createActivity
+  saveApiData,
+  getAllCountries, 
+  getCountryById,
+  getAllActivities, 
+  createActivity,
+  updateActivity,
+  deleteActivity
 }

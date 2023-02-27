@@ -4,14 +4,20 @@ import { useEffect, useState } from 'react';
 import { setNewActivity } from '../../../redux/actions';
 import { ErrorMsj } from '../../CommonComponents';
 
-const CountriesActivity = ()=> {
+const CountriesActivity = ( { action } )=> {
     const { allCountries, errorNewActivity } = useSelector( state => state )
+    const { countriesIds } = useSelector( state => state.newActivity )
+
     const dispatch = useDispatch()
     const [ selCountries, setSelCountries ] = useState( [] )
 
     useEffect( ()=>{
-            setSelCountries( allCountries )
-    }, [allCountries] )
+            if( action === 'Update' ){
+                const countriesSel = allCountries.map( country => ( { ...country, selected: countriesIds.includes( country.id ) } ) )
+                setSelCountries( countriesSel )
+            } else { setSelCountries( allCountries ) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ action, allCountries, action === 'Update' ? countriesIds : null ] ) 
  
     const handleClickCountry = ( event )=> {
         const selCountriesChanged = selCountries.map( country => {

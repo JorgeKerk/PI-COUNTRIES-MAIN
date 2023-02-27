@@ -1,39 +1,37 @@
 import { 
-    getAllCountries, 
-    getCountryByName,
-    setCurrentCountries,
-    setCountriesByActivities
+  getAllCountries, 
+  getCountryByName,
+  setCurrentCountries,
 } from './countries'
 
 import { 
-    createActivity, 
-    getAllActivities, 
-    setFilterByActivity,
+  createActivity, 
+  updateActivity,
+  deleteActivity,
+  getAllActivities, 
+  setFilterByActivity,
+  setNewActivity,
 } from './activities'
 
 import {
-    setCurrentPage,
-    setFilterByContinents,
-    setNamCountries,
-    setOrder,
-    setNewActivity,
-    clearNewActivity,
-    setError
+  setCurrentPage,
+  setError,
+  setFilterByContinents,
+  setOrder,
 } from './config'
 
 export { 
-    getAllCountries, 
-    getCountryByName,
-    setCurrentCountries,
-    setCountriesByActivities,
-    createActivity,
-    getAllActivities,
-    setCurrentPage,
-    setNamCountries,
-    setFilterByActivity,
-    setFilterByContinents,
-    setOrder,
-    setNewActivity,
-    clearNewActivity,
-    setError
+  getAllCountries, 
+  getCountryByName,
+  setCurrentCountries,
+  createActivity,
+  updateActivity,
+  deleteActivity,
+  getAllActivities,
+  setFilterByActivity,
+  setNewActivity,
+  setCurrentPage,
+  setError,
+  setFilterByContinents,
+  setOrder,
 }
