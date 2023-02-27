@@ -6,10 +6,10 @@ import SearchBar from './SearchBar/SearchBar'
 import SearchByName from './SearchByName/SearchByName'
 
 export {
-    FilterByActivity,
-    FilterByContinent,
-    ItemFilterOrOrder,
-    OrderCardsCountries,
-    SearchBar,
-    SearchByName
+  FilterByActivity,
+  FilterByContinent,
+  ItemFilterOrOrder,
+  OrderCardsCountries,
+  SearchBar,
+  SearchByName
 }

@@ -5,9 +5,9 @@ import ActivitySeasons from './ActivitySeasons/ActivitySeasons'
 import CountriesActivity from './CountriesActivity/CountriesActivity'
 
 export {
-    ActivityDificulty,
-    ActivityDuration,
-    ActivityName,
-    ActivitySeasons,
-    CountriesActivity
+  ActivityDificulty,
+  ActivityDuration,
+  ActivityName,
+  ActivitySeasons,
+  CountriesActivity
 }

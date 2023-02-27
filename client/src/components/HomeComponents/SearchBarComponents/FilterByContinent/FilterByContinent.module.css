@@ -1,10 +1,10 @@
 .subContainer {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    margin-top: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-top: 0.5rem;
 }
 
 .subContainer input{
-    margin: 0;
+  margin: 0;
 }

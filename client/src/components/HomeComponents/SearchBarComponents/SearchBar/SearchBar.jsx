@@ -5,17 +5,17 @@ import FilterByActivity from '../FilterByActivity/FilterByActivity'
 import OrderCardsCountries from '../OrderCardsCountries/OrderCardsCountries'
 
 const SearchBar = ()=> {
-    return(
-        <div className= { styles.mainContainer } >
-            <SearchByName />
-            <hr className= { styles.hr }/>
-            <FilterByContinent />
-            <hr className= { styles.hr }/>
-            <FilterByActivity />
-            <hr className= { styles.hrFinal } />
-            <OrderCardsCountries />
-        </div>
-    )
+  return(
+    <div className= { styles.mainContainer } >
+      <SearchByName />
+      <hr className= { styles.hr }/>
+      <FilterByContinent />
+      <hr className= { styles.hr }/>
+      <FilterByActivity />
+      <hr className= { styles.hrFinal } />
+      <OrderCardsCountries />
+    </div>
+  )
 }
 
 export default SearchBar

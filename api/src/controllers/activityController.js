@@ -63,7 +63,7 @@ const controlDataActivity = async ( isUpdate, name, dificulty, duration, seasons
 
 }
 
-const postAndGetCountriesOfActivity = async (  name )=> {
+const getCountriesOfActivity = async (  name )=> {
     
   // In the Front, the returned value needs to contain the IDs of Countries associated 
   return await Activity.findOne( 
@@ -99,7 +99,7 @@ const createActivity = async ( name, dificulty, duration, seasons, countriesIds 
   // The Country IDs entered by BODY are associated with the Activity
   await newActivity.addCountry( data.countriesIds ) 
   
-  return postAndGetCountriesOfActivity( data.name )
+  return getCountriesOfActivity( data.name )
 
 }
 
@@ -132,16 +132,13 @@ const updateActivity = async ( name, dificulty, duration, seasons, countriesIds 
 
   await updatedActivity.addCountry( data.countriesIds )
 
-  return postAndGetCountriesOfActivity( data.name )
+  return getCountriesOfActivity( data.name )
 
 }
 
 const deleteActivity = async ( id )=> {
-  const deleteActivity =  await Activity.findOne( 
-    { 
-      where: { id }
-    }
-  )
+  
+  const deleteActivity =  await Activity.findByPk( id )
 
   if(!deleteActivity ) throw Error( `The Activity with the name ${ name } does not exist`)
 

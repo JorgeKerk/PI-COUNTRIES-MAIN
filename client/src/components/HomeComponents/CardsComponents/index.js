@@ -2,6 +2,6 @@ import CardsContainerCountries from './CardsContainerCountries/CardsContainerCou
 import CardCountry from './CardCountry/CardCountry'
 
 export {
-    CardsContainerCountries,
-    CardCountry
+  CardsContainerCountries,
+  CardCountry
 }

@@ -10,8 +10,8 @@ const ActivityDificulty = ( { action } )=> {
   const dispatch = useDispatch()
 
   const handleChange = ( event ) => {
-      const valueSelect = parseInt(event.target.value)
-      dispatch( setNewActivity( { prop: 'dificulty', value: valueSelect, error: '' } ) )
+    const valueSelect = parseInt(event.target.value)
+    dispatch( setNewActivity( { prop: 'dificulty', value: valueSelect, error: '' } ) )
   }
   return(
     <div className= { styles.mainContiner } onChange= { handleChange }>
