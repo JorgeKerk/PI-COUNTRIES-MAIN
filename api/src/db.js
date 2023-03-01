@@ -4,11 +4,11 @@ const fs = require('fs');
 const path = require('path');
 const {
   // LOCAL CONNECTION
-  // DB_USER,
-  // DB_PASSWORD,
-  // DB_HOST,
+  DB_USER,
+  DB_PASSWORD,
+  DB_HOST,
   // DEPLOYED CONECTION
-  DB_DEPLOY,
+  // DB_DEPLOY,
 } = process.env;
 
 // LOCAL CONNECTION
